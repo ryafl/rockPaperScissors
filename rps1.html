@@ -21,12 +21,107 @@
 		}
 
 		function playRound(playerSelection, computerSelection) {
-			let playa = playerSelection;
+			let playa = playerSelection.toLowerCase();
 			let comp = computerSelection;
 
-			
+			if (playa == 'rock' && comp == 'paper') {
+				return 'The Computer won. You lose! Paper beats Rock';
+			}
+			else if (playa == 'rock' && comp == 'rock') {
+				return "It's a tie! Both sides selected Rock";
+			}
+			else if (playa == 'rock' && comp == 'scissors') {
+				return 'You won! Rock beats Scissors.';
+			}
+			else if (playa == 'paper' && comp == 'rock') {
+				return 'You won! Paper beats Rock';
+			}
+			else if (playa == 'paper' && comp == 'paper') {
+				return "It's a tie! Both sides selected Paper";
+			}
+			else if (playa == 'paper' && comp == 'scissors') {
+				return 'The Computer won. You lose! Scissors beats paper';
+			}
+			else if (playa == 'scissors' && comp == 'paper') {
+				return 'You won! Scissors beats Paper.';
+			}
+			else if (playa == 'scissors' && comp == 'rock') {
+				return 'The computer won. You lose! Rock beats scissors';
+			}
+			else if (playa == 'scissors' && comp == 'scissors') {
+				return "It's a tie! Both sides selected Scissors";
+			}
+			else
+				return "You got a problem in your code buddy";
 
 		}
+
+		function winTracker() {
+			let playerSelect = prompt("Rock, Paper, or Scissors?");
+			let compSelect = computerPlay();
+			let result = playRound(playerSelect, compSelect);
+			console.log(result);
+
+			if (result == 'The Computer won. You lose! Paper beats Rock') {
+				return 0;
+			}
+			else if (result == "It's a tie! Both sides selected Rock") {
+				return 1;
+			}
+			else if (result == 'You won! Rock beats Scissors.') {
+				return 2;
+			}
+			else if (result == 'You won! Paper beats Rock') {
+				return 2;
+			}
+			else if (result == "It's a tie! Both sides selected Paper") {
+				return 1;
+			}
+			else if (result == 'The Computer won. You lose! Scissors beats paper') {
+				return 0;
+			}
+			else if (result == 'You won! Scissors beats Paper.') {
+				return 2
+			}
+			else if (result == 'The computer won. You lose! Rock beats scissors') {
+				return 0;
+			}
+			else if (result == "It's a tie! Both sides selected Scissors") {
+				return 1;
+			}
+		}
+
+		function game() {
+			let playerWins = 0;
+			let compWins = 0;
+			let ties = 0;
+
+			while ((playerWins < 5) && (compWins < 5)) {
+				let gameWinner = winTracker();
+				if (gameWinner == 0) {
+					compWins++;
+				}
+				else if (gameWinner == 2) {
+					playerWins++;
+				}
+				else if (gameWinner == 1) {
+					ties++;
+				}
+				//console.log(compWins);
+				//console.log(playerWins);
+			}
+
+			if (playerWins == 5) {
+				return 'You won the game! You won 5 times, and you tied ' + ties + ' times. The computer won ' + compWins + ' times.';
+			}
+			else if (compWins == 5) {
+				return 'You lost the game! The computer won 5 times, and yall tied ' + ties + ' times. You won ' + playerWins + ' times.'
+			}
+		}
+
+		//let playerSelection = prompt("Rock, Paper, or Scissors?");
+		//let computerSelection = computerPlay();
+		console.log(game());
 		
 	</script>
 
